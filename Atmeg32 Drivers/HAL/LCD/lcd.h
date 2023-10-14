@@ -61,6 +61,7 @@ void LCD_clearScreen(void);
 void LCD_displayStringRowColumn(u8 row,u8 col,const char *str);
 void LCD_goToRowColumn(u8 row,u8 col);
 void LCD_intgerToString(int data);
+void LCD_FloatToString(f32 data);
 void LCD_Cursor_ON(void);
 void LCD_Cursor_Blinking(void);
 #endif /* LCD_H_ */

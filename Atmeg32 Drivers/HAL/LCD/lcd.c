@@ -154,7 +154,12 @@ void LCD_intgerToString(int data)
 	itoa(data,buff,10); // 10 base for decimal
 	LCD_displayString(buff);
 }
-
+void LCD_FloatToString(f32 data)
+{
+	u8 buff[16]; // string to hold ASCII result
+	dtostrf(data,3,1,buff); // float to decimal
+	LCD_DisplayString(buff);
+}	
 void LCD_clearScreen(void)
 {
 	LCD_sendCommand(CLEAR_COMMAND); // clear display
