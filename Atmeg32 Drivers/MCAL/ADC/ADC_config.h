@@ -26,7 +26,7 @@
 
  */
 
-#define INT_STATUS   INT_ENABLE
+#define INT_STATUS   INT_DISABLE
 /*
  Options:-
  	      1-AREF
@@ -35,7 +35,7 @@
 
  */
 
-#define ADC_VREF  AVCC
+#define ADC_VREF  AREF
 
 /*
   Options :
