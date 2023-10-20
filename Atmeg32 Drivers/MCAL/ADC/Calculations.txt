@@ -1,0 +1,15 @@
+The ADC  is 10 bit resolution
+
+if Vref = 5 v
+
+step = Vref / 2^ resolution
+     = 5 / 2 ^10 = 4.88 mv
+
+Analog = digital (Reading) * step
+
+
+ Lm35 Temperature Sensor
+Output Voltage: 10mV/°C
+
+So Temp value = analog /10   //to convert  mv --> °C
+

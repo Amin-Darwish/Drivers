@@ -22,6 +22,24 @@
 void ADC_voidInit(void)
 {
 	/* SET AREF as reference voltage */
+	
+	/*Select the voltage reference*/
+	#if ADC_VREF == AREF
+	CLR_BIT(ADMUX , ADMUX_REFS0) ;
+	CLR_BIT(ADMUX , ADMUX_REFS1) ;
+
+	#elif ADC_VREF == AVCC
+	SET_BIT(ADMUX , ADMUX_REFS0) ;
+	CLR_BIT(ADMUX , ADMUX_REFS1) ;
+
+	#elif ADC_VREF == INTERNAL_2_56
+	SET_BIT(ADMUX , ADMUX_REFS0) ;
+	SET_BIT(ADMUX , ADMUX_REFS1) ;
+
+	#else
+	#error "Wrong ADC_VREF config"
+
+	#endif
 
 	/*Select the voltage reference*/
 	#if ADC_VREF == AREF
@@ -54,7 +72,14 @@ void ADC_voidInit(void)
 	
 	#endif
 	
-
+	/*Enable ADC Peripheral*/
+	#if ADC_STATUS == ADC_DISABLE
+	CLEAR_BIT(ADCSRA , ADCSRA_ADEN) ;
+	#elif ADC_STATUS == ADC_ENABLE
+	SET_BIT(ADCSRA , ADCSRA_ADEN) ;
+	#else
+	#error "Wrong ADC_STATUS config"
+	#endif;
 	
 	/* Setting  prescaler */
 	
@@ -97,11 +122,7 @@ u16 ADC_ReadChannel(u8 Copy_u8Channel)
 	
 	/* Clear interrupt flag BY writing 1 */
 	SET_BIT(ADCSRA,ADCSRA_ADIF);
-	/*return Conversation result */
-	#if ADC_ADJUSTMENT == RIGHT_ADJUSTMENT
-	return (ADCL | (ADCH << 8)) ;
-	#elif  ADC_ADJUSTMENT == LEFT_ADJUSTMENT
+	/*return the data */
 	return ADCH;
-	#endif 
 }
 
