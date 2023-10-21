@@ -25,24 +25,6 @@ void ADC_voidInit(void)
 	
 	/*Select the voltage reference*/
 	#if ADC_VREF == AREF
-	CLR_BIT(ADMUX , ADMUX_REFS0) ;
-	CLR_BIT(ADMUX , ADMUX_REFS1) ;
-
-	#elif ADC_VREF == AVCC
-	SET_BIT(ADMUX , ADMUX_REFS0) ;
-	CLR_BIT(ADMUX , ADMUX_REFS1) ;
-
-	#elif ADC_VREF == INTERNAL_2_56
-	SET_BIT(ADMUX , ADMUX_REFS0) ;
-	SET_BIT(ADMUX , ADMUX_REFS1) ;
-
-	#else
-	#error "Wrong ADC_VREF config"
-
-	#endif
-
-	/*Select the voltage reference*/
-	#if ADC_VREF == AREF
 	CLEAR_BIT(ADMUX , ADMUX_REFS0) ;
 	CLEAR_BIT(ADMUX , ADMUX_REFS1) ;
 
